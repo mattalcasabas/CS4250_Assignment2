@@ -10,18 +10,33 @@
 # standard arrays
 
 #importing some Python libraries
-# --> add your Python code here
+from pymongo import MongoClient
+import datetime
 
 def connectDataBase():
 
     # Create a database connection object using pymongo
-    # --> add your Python code here
+    DB_NAME = "cs4250_project2"
+    DB_HOST = "localhost"
+    DB_PORT = 27017
+
+    try: 
+        client = MongoClient(host = DB_HOST, port = DB_PORT)
+        db = client[DB_NAME]
+        print("Database connected succesfully")
+
+        return db
+    
+    except:
+        print("Error connecting to database")
 
 def createDocument(col, docId, docText, docTitle, docDate, docCat):
 
     # create a dictionary (document) to count how many times each term appears in the document.
     # Use space " " as the delimiter character for terms and remember to lowercase them.
-    # --> add your Python code here
+    document = {
+
+    }
 
     # create a list of dictionaries (documents) with each entry including a term, its occurrences, and its num_chars. Ex: [{term, count, num_char}]
     # --> add your Python code here
@@ -30,12 +45,12 @@ def createDocument(col, docId, docText, docTitle, docDate, docCat):
     # --> add your Python code here
 
     # Insert the document
-    # --> add your Python code here
+    col.insert_one(document)
 
 def deleteDocument(col, docId):
 
     # Delete the document from the database
-    # --> add your Python code here
+    col.delete_one({"_id": docId})
 
 def updateDocument(col, docId, docText, docTitle, docDate, docCat):
 
@@ -44,6 +59,7 @@ def updateDocument(col, docId, docText, docTitle, docDate, docCat):
 
     # Create the document with the same id
     # --> add your Python code here
+    col.update_one()
 
 def getIndex(col):
 
