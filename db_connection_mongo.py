@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
+# AUTHOR: Matthew Alcasabas
+# FILENAME: db_connection_mongo.py
+# SPECIFICATION: handles database connection, CRUD operations
 # FOR: CS 4250- Assignment #2
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 2 days
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with
@@ -99,8 +99,7 @@ def getIndex(col):
     # We are simulating an inverted index here in memory.
     
     pipeline = [
-        {"$unwind": {'$terms'}},
-        {"$group": {"_id": null, "total": {"$sum": "$terms.count"}}},
+        {"$unwind": {'$terms'}}
     ]
 
     # print("index")
